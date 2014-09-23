@@ -30,8 +30,8 @@ angular.module("file-data-url", [])
                         var w = tmp.width,
                             h = tmp.height,
                             quality = element.data("img-quality") || null,
-                            maxWidth = parseInt(element.data("max-width") || tmp.width),
-                            maxHeight = parseInt(element.data("max-height") || tmp.height),
+                            maxWidth = parseInt(element.data("img-max-width") || tmp.width),
+                            maxHeight = parseInt(element.data("img-max-height") || tmp.height),
                             canvas = document.createElement("canvas"),
                             ctx = canvas.getContext("2d");
                         if (w > h) {
