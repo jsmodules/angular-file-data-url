@@ -4,6 +4,13 @@ A super simple AngularJS directive with encodes images to data url's using a inp
 
 It binds the ngModel controller to the element and automagically sets the ngModel the file contents (if it's an image) to a base64 encoded data url.
 
+## Installation
+
+Via bower:
+
+```
+bower install angular-file-data-url
+```
 
 ## Browser Requirements
 
