@@ -13,7 +13,16 @@ There's currently no fallback for IE <= 9 or Opera mini. Feel free to send a PR 
 
 ## Usage
 
-#### Minimal Options
+### Including It
+ 
+The module name is `file-data-url`, so you'll have to explicitly
+require it when setting up your app. A sample is below:
+
+```javascript
+angular.module("myApp", ["file-data-url"]);
+```
+
+### Minimal Options
 
 ```html
 <input type="file" ng-file ng-model="myFile">
