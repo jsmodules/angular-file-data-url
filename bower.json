@@ -7,7 +7,7 @@
   ],
   "description": "A super simple AngularJS directive with encodes images to data url's using a input[type=file] element",
   "main": "dist/fileDataUrl.js",
-  "license": "MIT",
+  "license": "MPL",
   "ignore": [
     "**/.*",
     "node_modules",
