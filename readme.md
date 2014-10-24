@@ -22,18 +22,18 @@ There's currently no fallback for IE <= 9 or Opera mini. Feel free to send a PR 
 ### All Options
 
 ```html
-<input type="file" ng-file ng-model="myFile" data-img-format="image/jpeg" data-img-quality="1.0" data-img-max-width="100" data-img-max-height="100">
+<input type="file" ng-file ng-model="myFile" ng-format="image/jpeg" ng-quality="1.0" ng-max-width="100" ng-max-height="100">
 ```
-    
+
 ## Options
 
-`data-img-format` The the image encoding format: `image/jpeg`, `image/png`, `image/webp` or other format supported by [HTMLCanvasElement.toDataUrl](https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement). Defaults to `image/jpeg`.
+`ng-format` The the image encoding format: `image/jpeg`, `image/png`, `image/webp` or other format supported by [HTMLCanvasElement.toDataUrl](https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement). Defaults to `image/jpeg`.
 
-`data-img-quality` The quality of image encoding. A range from `0` to `1.0` per the [HTMLCanvasElement.toDataUrl](https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement) spec. Defaults to null, using the browser default.
+`ng-quality` The quality of image encoding. A range from `0` to `1.0` per the [HTMLCanvasElement.toDataUrl](https://developer.mozilla.org/en/docs/Web/API/HTMLCanvasElement) spec. Defaults to null, using the browser default.
 
-`data-img-max-height` The max height, in pixels, of the resulting image. Images bigger than this are scaled down to fit. Defaults to `null` for no limit on the height.
+`ng-height` The max height, in pixels, of the resulting image. Images bigger than this are scaled down to fit. Defaults to `null` for no limit on the height.
 
-`data-img-max-width` The maxiumum image width, in pixels, of the result image. Images bigger than this are scaled to fit this dimension. Defaults to `null` for no limit on the width.
+`ng-width` The max image width, in pixels, of the result image. Images bigger than this are scaled to fit this dimension. Defaults to `null` for no limit on the width.
 
 ## To Do
 
