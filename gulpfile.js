@@ -1,6 +1,5 @@
 var gulp = require("gulp"),
     uglify = require("gulp-uglify"),
-    changed = require("gulp-changed"),
     jshint = require("gulp-jshint"),
     stylish = require("jshint-stylish");
 
@@ -17,8 +16,12 @@ gulp.task("js", function() {
         .pipe(gulp.dest(DEST));
 });
 
+gulp.task("watch", function() {
+    gulp.watch(path("src/**/*.js"), ["js"]);
+});
+
 gulp.task("jshint", function () {
-    return gulp.src("src/js/**/*.js")
+    return gulp.src(path("src/js/**/*.js"))
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });

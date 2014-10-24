@@ -18,7 +18,7 @@
   "quotmark" : "double",
   "undef" : true,
   "unused" : true,
-  "strict" : true,
+  "strict" : false,
   "maxparams" : false,
   "maxdepth" : false,
   "maxstatements" : false,
@@ -58,7 +58,7 @@
   "jquery" : false,
   "mocha" : true,
   "mootools" : false,
-  "node" : false,
+  "node" : true,
   "nonstandard" : false,
   "prototypejs" : false,
   "qunit" : false,
@@ -69,6 +69,18 @@
   "yui" : false,
   "globals" : {
     "__dirname": false,
-    "require": false
+    "require": false,
+    "angular": false,
+    "describe": false,
+    "it": false,
+    "expect": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "module": false,
+    "inject": false,
+    "browser": false,
+    "element": false,
+    "by": false,
+    "element": true
   }
 }

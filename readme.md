@@ -35,3 +35,7 @@ There's currently no fallback for IE <= 9 or Opera mini. Feel free to send a PR 
 
 `data-img-max-width` The maxiumum image width, in pixels, of the result image. Images bigger than this are scaled to fit this dimension. Defaults to `null` for no limit on the width.
 
+## To Do
+
+Feel free to jump in and help out. First priority right now is to get tests written for major browsers.
+It's a super simple directive, and it should work, but adding tests is important!

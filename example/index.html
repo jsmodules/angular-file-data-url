@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fileDataUrl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angular-file-data-url Test Suite</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .spaced {
+            margin-top: 12px;
+        }
+        .outline {
+            display: table;
+            border: 1px solid #ccc;
+        }
+        .outline .inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="testCtrl">
+        <div class="page-header">
+            <h1>
+                <a href="https://github.com/BitolaCo/angular-file-data-url">
+                    Angular File Data-Url
+                </a>
+                <small>Test/Demo</small>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Options</h2>
+                <div class="row spaced">
+                    <div class="col-sm-4">File</div>
+                    <div class="col-sm-8">
+                        <input type="file" ng-file
+                               ng-model="image.src"
+                               ng-format="{{ image.format }}"
+                               ng-quality="{{ image.quality }}"
+                               ng-max-width="{{ image.width }}"
+                               ng-max-height="{{ image.height }}">
+                    </div>
+                </div>
+                <div class="row spaced">
+                    <div class="col-sm-4">Max Height</div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <input ng-model="image.height" type="range" step="1" min="1" max="5000">
+                            </div>
+                            <div class="col-sm-2">
+                                {{ image.height }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row spaced">
+                    <div class="col-sm-4">Max Width</div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <input ng-model="image.width" type="range" step="1" min="1" max="5000">
+                            </div>
+                            <div class="col-sm-2">
+                                {{ image.width }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row spaced">
+                    <div class="col-sm-4">Quality</div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <input type="range" ng-model="image.quality" step="0.01" min="0" max="1">
+                            </div>
+                            <div class="col-sm-2">
+                                {{ image.quality * 100 | number:0 }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row spaced">
+                    <div class="col-sm-4">Type</div>
+                    <div class="col-sm-7">
+                        <select class="form-control" ng-model="image.format">
+                            <option value="image/jpeg">JPEG</option>
+                            <option value="image/png">PNG</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Image</h2>
+                <div ng-show="image.src">
+                    <img ng-src="{{ image.src }}">
+                </div>
+                <div ng-hide="image.src">
+                    <div class="outline">
+                        <div class="inner" style="height: {{ image.height }}px; width: {{ image.width }}px">No image selected!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Model Data</h2>
+                <pre>{{ image.src }}</pre>
+            </div>
+        </div>
+    </div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="js/fileDataUrl.js"></script>
+    <script>
+        angular.module("fileDataUrl", ["file-data-url"])
+                .controller("testCtrl", function($scope) {
+                    $scope.image = {
+                        quality: 1.0,
+                        height: '500',
+                        width: '500',
+                        format: 'image/jpeg'
+                    };
+                });
+    </script>
+</body>
