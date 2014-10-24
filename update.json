@@ -1,0 +1,8 @@
+{
+  "packageManager": "github",
+  "name": "angular.file-data-url",
+  "repo": "BitolaCo/angular-file-data-url",
+  "files": {
+    "include": ["dist/fileDataUrl.js"]
+  }
+}
