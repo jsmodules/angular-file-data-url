@@ -31,7 +31,7 @@ angular.module("myApp", ["file-data-url"]);
 ### All Options
 
 ```html
-<input type="file" ng-file ng-model="myFile" ng-format="image/jpeg" ng-quality="1.0" ng-max-width="100" ng-max-height="100">
+<input type="file" accept="image/png,image/jpeg,image/webp" ng-file ng-model="myFile" ng-format="image/jpeg" ng-quality="1.0" ng-max-width="100" ng-max-height="100">
 ```
 
 ## Options
