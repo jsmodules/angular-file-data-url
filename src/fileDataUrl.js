@@ -5,7 +5,9 @@ angular.module("file-data-url", [])
             restrict: "A",
             link: function($scope, $element, $attrs, $ngModel) {
 
-                var reader = new FileReader();
+                var reader = new FileReader(),
+                    reading = false;
+
                 function set(val) {
                     if (! $scope.$$phase) {
                         $scope.$apply(function() {
@@ -22,9 +24,15 @@ angular.module("file-data-url", [])
                         set(null);
                         return;
                     }
-                    try {
+
+                    // If loading, first abort then load again.
+                    // Otherwise will throw an error.
+                    if(reader.readyState === 1) {
+                        reader.abort();
+                    } else {
                         reader.readAsDataURL(file);
-                    } catch(e) { /* reader.readAsDataURL is busy */ }
+                    }
+
                 }
 
                 // Set up all the watcher goodness.
@@ -34,8 +42,15 @@ angular.module("file-data-url", [])
                 });
 
                 reader.onloadend = function () {
+
+                    // Prevents an aborted read from updating the model.
+                    if (! reader.result) {
+                        return;
+                    }
+
                     var format = $attrs.ngFormat || "image/jpeg",
                         tmp = new Image();
+
                     tmp.src = reader.result;
                     tmp.onload = function() {
                         var w = tmp.width,
