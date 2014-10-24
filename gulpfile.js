@@ -1,6 +1,7 @@
 var gulp = require("gulp"),
     uglify = require("gulp-uglify"),
     jshint = require("gulp-jshint"),
+    size = require("gulp-size"),
     stylish = require("jshint-stylish");
 
 function path(str) {
@@ -13,6 +14,7 @@ gulp.task("js", function() {
 
     return gulp.src(SRC)
         .pipe(uglify())
+        .pipe(size({gzip: true}))
         .pipe(gulp.dest(DEST));
 });
 

@@ -1,14 +1,19 @@
 angular.module("file-data-url", [])
-    .directive("ngFile", ["$log", function($log) {
+    .directive("ngFile", function() {
         return {
             require: "?ngModel",
             restrict: "A",
             link: function($scope, $element, $attrs, $ngModel) {
 
                 var reader = new FileReader();
-
                 function set(val) {
-                    $ngModel.$setViewValue(val);
+                    if (! $scope.$$phase) {
+                        $scope.$apply(function() {
+                            $ngModel.$setViewValue(val);
+                        });
+                    } else {
+                        $ngModel.$setViewValue(val);
+                    }
                 }
 
                 function onChange() {
@@ -17,7 +22,9 @@ angular.module("file-data-url", [])
                         set(null);
                         return;
                     }
-                    reader.readAsDataURL(file);
+                    try {
+                        reader.readAsDataURL(file);
+                    } catch(e) { /* reader.readAsDataURL is busy */ }
                 }
 
                 // Set up all the watcher goodness.
@@ -33,7 +40,7 @@ angular.module("file-data-url", [])
                     tmp.onload = function() {
                         var w = tmp.width,
                             h = tmp.height,
-                            quality = $attrs.ngQuality || 1.0,
+                            quality = parseFloat($attrs.ngQuality || 1.0),
                             maxWidth = parseInt($attrs.ngMaxWidth || tmp.width),
                             maxHeight = parseInt($attrs.ngMaxHeight || tmp.height),
                             canvas = document.createElement("canvas"),
@@ -43,17 +50,19 @@ angular.module("file-data-url", [])
                             h *= maxWidth / w;
                             w = maxWidth;
                         }
+
                         if (h > maxHeight) {
-                            w *= maxHeight / w;
+                            w *= maxHeight / h;
                             h = maxHeight;
                         }
 
                         canvas.width = w;
                         canvas.height = h;
                         ctx.drawImage(this, 0, 0, w, h);
-                        set(canvas.toDataURL(format, quality));
+
+                        set(canvas.toDataURL(format, isNaN(quality) ? 1.0 : quality));
                     };
                 };
             }
         };
-    }]);
+    });
