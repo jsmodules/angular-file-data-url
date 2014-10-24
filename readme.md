@@ -35,6 +35,16 @@ There's currently no fallback for IE <= 9 or Opera mini. Feel free to send a PR 
 
 `ng-width` The max image width, in pixels, of the result image. Images bigger than this are scaled to fit this dimension. Defaults to `null` for no limit on the width.
 
+## Testing
+
+A full example is in the `example` directory. Just run `npm start` and head on over to
+[http://localhost:8000/example/](http://localhost:8000/example/) to check it out and
+see what it can do.
+
+## Bugs
+
+Please file bugs, issues, and feature requests on the GitHub issue tracker.
+
 ## To Do
 
 Feel free to jump in and help out. First priority right now is to get tests written for major browsers.
