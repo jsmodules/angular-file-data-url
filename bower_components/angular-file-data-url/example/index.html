@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>angular-file-data-url Test Suite</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootswatch/3.2.0.1/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.2.0/css/font-awesome.min.css">
+    <style>
+        .spaced {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#nav-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">AngularJS Online Image Encoder</a>
+        </div>
+        <div class="collapse navbar-collapse" id="nav-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/demo">Demo</a></li>
+                <li><a href="#/docs">Docs</a></li>
+                <li>
+                    <a href="https://github.com/BitolaCo/angular-file-data-url">
+                        <span class="fa fa-github"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div ng-view></div>
+</div>
+<script type="text/ng-template" id="/demo.html">
+    <div class="page-header">
+        <p>
+            <em>
+                This is a demo of all 527 bytes of the AngularJS module
+                <a href="https://github.com/BitolaCo/angular-file-data-url">file-data-url</a>.
+                All the encoding is done in your browser. No image data is uploaded.
+            </em>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="hideOptions = ! hideOptions">
+                        <span class="pull-right">
+                            <span ng-show="hideOptions">
+                                <span class="fa fa-caret-up"></span>
+                            </span>
+                            <span ng-hide="hideOptions">
+                                <span class="fa fa-caret-down"></span>
+                            </span>
+                        </span>
+
+                    <h3 class="panel-title">Options</h3>
+                </div>
+                <div class="panel-body" ng-hide="hideOptions">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="row spaced">
+                                <div class="col-sm-4">File</div>
+                                <div class="col-sm-8">
+                                    <input type="file"
+                                           ng-file
+                                           ng-model="image.src"
+                                           ng-format="{{ image.format }}"
+                                           ng-quality="{{ image.quality }}"
+                                           ng-max-width="{{ image.width }}"
+                                           ng-max-height="{{ image.height }}">
+                                </div>
+                            </div>
+                            <div class="row spaced">
+                                <div class="col-sm-4">Type</div>
+                                <div class="col-sm-8">
+                                    <select class="form-control" ng-model="image.format">
+                                        <option value="image/webp">image/webp</option>
+                                        <option value="image/jpeg">image/jpeg</option>
+                                        <option value="image/png">image/png</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="row spaced">
+                                <div class="col-sm-4">Max Height</div>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <input ng-model="image.height" type="range" step="1" min="1" max="5000">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            {{ image.height }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row spaced">
+                                <div class="col-sm-4">Max Width</div>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <input ng-model="image.width" type="range" step="1" min="1" max="5000">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            {{ image.width }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row spaced">
+                                <div class="col-sm-4">Quality</div>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <input type="range" ng-model="image.quality" step="0.01" min="0" max="1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            {{ image.quality * 100 | number:0 }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="hide.image = ! hide.image">
+                    <span class="pull-right">
+                        <span ng-show="hide.image">
+                            <span class="fa fa-caret-up"></span>
+                        </span>
+                        <span ng-hide="hide.image">
+                            <span class="fa fa-caret-down"></span>
+                        </span>
+                    </span>
+
+                    <h3 class="panel-title">Image</h3>
+                </div>
+                <div class="panel-body" ng-hide="hide.image">
+                    <p ng-hide="image.src">No image selected</p>
+                    <img ng-show="image.src" ng-src="{{ image.src }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="hide.data = ! hide.data">
+                        <span class="pull-right">
+                            <span ng-show="hide.data">
+                                <span class="fa fa-caret-up"></span>
+                            </span>
+                            <span ng-hide="hide.data">
+                                <span class="fa fa-caret-down"></span>
+                            </span>
+                        </span>
+
+                    <h3 class="panel-title">Model Data
+                        <small>({{ image.src.length || 0 }} chars)</small>
+                    </h3>
+                </div>
+                <div class="panel-body" ng-hide="hide.data">
+                    <p ng-hide="image.src">No image selected</p>
+                    <pre ng-show="image.src">{{ image.src }}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="/docs.html">
+    <div class="page-header">
+        <h1>Documentation
+            <small>Coming soon!</small>
+        </h1>
+        <p>Please check back soon or visit
+            <a href="https://github.com/BitolaCo/angular-file-data-url">the project page at GitHub</a>.
+        </p>
+    </div>
+</script>
+<script src="https://cdn.jsdelivr.net/g/script.js,jquery@2,bootstrap@3.2,angularjs(angular-loader.min.js+angular.min.js+angular-route.min.js)"></script>
+<script>
+$script(["js/fileDataUrl.js"], function() {
+    angular.module("fileDataDemo", ["file-data-url", "ngRoute"])
+            .controller("docsCtrl", function ($scope) {
+
+            })
+            .controller("demoCtrl", function ($scope, $routeParams) {
+                $scope.hide = {
+                    image: false,
+                    data: false
+                };
+                $scope.image = {
+                    quality: 1.0,
+                    height: $routeParams.height || 500,
+                    width: $routeParams.width || 500,
+                    format: "image/" + ($routeParams.format || "jpeg")
+                };
+                if ($routeParams.quality) {
+                    var qual = parseFloat($routeParams.quality);
+                    if (!isNaN(qual)) {
+                        $scope.image.quality = qual / 100;
+                    }
+                }
+            })
+            .config(function ($routeProvider, $locationProvider) {
+                $routeProvider
+                        .when('/docs', {
+                            templateUrl: '/docs.html',
+                            controller: 'docsCtrl'
+                        })
+                        .when('/demo/:format?/:height?/:width?/:quality?', {
+                            templateUrl: '/demo.html',
+                            controller: 'demoCtrl'
+                        })
+                        .otherwise({
+                            redirectTo: "/demo/jpeg/500/500/100"
+                        });
+            });
+
+    angular.bootstrap(document, ["fileDataDemo"]);
+
+});
+</script>
+</body>
